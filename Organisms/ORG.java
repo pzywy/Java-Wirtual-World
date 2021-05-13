@@ -1,0 +1,18 @@
+package Organisms;
+
+public enum ORG {
+	GRACZ,
+	TRAWA,
+	MLECZ,
+	GUARANA,
+	WILCZEJAGODY,
+	BARSZCZ,
+	WILK,
+	OWCA,
+	LIS,
+	ZOLW,
+	ANTYLOPA,
+	CYBEROWCA,
+	UNDEFIND,
+	FIRE
+}
