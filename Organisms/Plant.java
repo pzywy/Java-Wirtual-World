@@ -1,13 +1,12 @@
 package Organisms;
 
-import java.util.Random;
-
 import Board.GameBoard;
 import Board.Point;
-import Plants.Milt;
 
 public abstract class Plant extends Organism {
 
+	
+	
 	public Plant(ORG _name, int _strengh, Point _pos,GameBoard _board) {
 		super(_name, _strengh, 0, _pos,_board);
 	}
@@ -19,24 +18,21 @@ public abstract class Plant extends Organism {
 		super.turn();
 	}
 	
-	void attemtReproduct()
+	//1 for pass, 0 for blocked, -1 for dead
+	@Override
+	public int didPassCollision(Organism org)
 	{
-		Random rand = new Random();
-		if(rand.nextInt(5)==0)
-		{
-			System.out.println("Attempting reproduce "+getName()+ "on Pos: "+getPos().getX()+" "+getPos().getY());
-			Point pos = getEmptyNeighbourCell();
-			
-			if(pos.getX()!=-1)
-			{
-				reproduct(pos);
-			}
-		}
+		gotEaten(org);
+		return 1;
+	}
+	
+	public void gotEaten(Organism org)
+	{
+		//if animal lives longer after eat.
+		org.setMaxAge(org.getMaxAge()+5);
+		died(" was eaten by "+org.getName());
 	}
 
-	protected void reproduct(Point pos) {
-
-	}
 	
 	
 }

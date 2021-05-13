@@ -2,9 +2,6 @@ package Plants;
 
 import java.awt.Color;
 import java.awt.Image;
-import java.awt.Toolkit;
-
-
 import Board.GameBoard;
 import Board.Point;
 import Organisms.ORG;
@@ -17,26 +14,29 @@ public class Milt extends Plant {
 		super(ORG.MLECZ, 0, _pos, _board);
 		
 	setColor(Color.yellow);
-	
+	reproductionChance = 20;
+	setMaxAge(100);
 	
 			
-			
-	//setImg(Toolkit.getDefaultToolkit().getImage("src/data/milt.jpg"));
 
 	}
 	
-	public Image getImg() {
-		
-				
+	@Override
+	public void turn() {
+		attemtReproduct();
+		attemtReproduct();
+		super.turn();
+		//System.out.println("Milt Pos: "+getPos().getX()+", "+getPos().getY());
+	}
+	
+	public Image getImg() {	
 		return Images.milt;
-
 	}
 	
 	protected void reproduct(Point _pos)
-	{
-		System.out.println("Reproduce "+getName()+ "on Pos: "+_pos.getX()+" "+_pos.getY());
+	{		
 		new Milt(_pos,board);
-		System.out.println("Reproducted");
+		super.reproduct(_pos);
 	}
 	
 }

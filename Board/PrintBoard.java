@@ -3,10 +3,8 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
-
 import javax.swing.JPanel;
 
-import Organisms.Organism;
 
 public class PrintBoard extends JPanel {
 	
@@ -25,12 +23,19 @@ public class PrintBoard extends JPanel {
 	@Override
 	protected void paintComponent(Graphics g)
 	{
-		GameBoard.cellSide = ( getWidth() ) / 15;
+		GameBoard.cellSide = ( getHeight()*10/GameBoard.rows ) / 11;
 				
 		super.paintComponent(g);
 		Graphics2D g2 = (Graphics2D)g;
 		
+		//g2.setColor(new Color(86, 125, 70));   NICE GREEN
+		g2.setColor(new Color(194, 178, 128));
+		
+		g2.fillRect(originX, originY,GameBoard.cellSide*(GameBoard.cols), GameBoard.cellSide*GameBoard.rows);
+		
+		g2.setColor(Color.black);
 		printGrid(g2);
+		
 		
 		
 		board.getListOfOrganisms().forEach((org) ->{
@@ -50,6 +55,7 @@ public class PrintBoard extends JPanel {
 	}
 	
 	
+	@SuppressWarnings("unused")
 	private void drawCell(Graphics2D g,int row, int col,Color color)
 	{
 		
