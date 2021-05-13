@@ -1,31 +1,67 @@
 package Organisms;
 
 import java.awt.Color;
+import java.awt.Image;
+import java.util.Random;
 
 import Board.GameBoard;
+import Board.Point;
 
 public abstract class Organism {
-public Organism(ORG _name,int _strengh, int _effort, int _x, int _y,GameBoard _board)
+public Organism(ORG _name,int _strengh, int _effort, Point _pos,GameBoard _board)
 {
 	setName(_name);
 	setStrengh(_strengh);
 	setEffort(_effort);
-	setX(_x);
-	setY(_y);
+	setPos(_pos);
 	setBoard(_board);
-	
+	setAlive(true);
+	setAge(0);
 	board.addOrganism(this);
 }
 
-private GameBoard board;
+
+public void turn()
+{
+	setAge(age+1);
+	//pos=new Point(pos.getX(),pos.getY()+1);
+}
+
+public Point getEmptyNeighbourCell()
+{
+	System.out.println("Getting empty cell");
+	Point cell = new Point(-1,-1);
+	for(int i=0;i<=9;i++)
+	{
+		Random rand = new Random();
+		i = rand.nextInt(10);
+		
+		cell = new Point((int)((i/3.5)-1),((i % 3) + 1) % 3);
+		if(cell.getY()==2)cell.setY(-1);
+		
+		cell.setX(cell.getX()+pos.getX());
+		cell.setY(cell.getY()+pos.getY());
+		
+		System.out.println("checking Pos= "+cell.getX()+" "+cell.getY());
+		
+		if(cell.getX()<0 || cell.getY()<0 || cell.getY()>=GameBoard.cols || cell.getX()>=GameBoard.rows)
+			continue;
+		
+		if(board.getFromArray(cell)==null||board.getFromArray(cell).isAlive())
+			return cell;
+	}
+	return new Point(-1,-1);
+}
+
+protected GameBoard board;
 private ORG name;
 private int strengh;
 private int effort;
-private int X;
-private int Y;
+private Point pos;
 private int age;//in turns
 private boolean alive;
 private Color color = Color.blue;
+private Image img;
 
 public boolean isAlive() {
 	return alive;
@@ -39,18 +75,7 @@ public int getAge() {
 public void setAge(int age) {
 	this.age = age;
 }
-public int getY() {
-	return Y;
-}
-public void setY(int y) {
-	Y = y;
-}
-public int getX() {
-	return X;
-}
-public void setX(int x) {
-	X = x;
-}
+
 public int getEffort() {
 	return effort;
 }
@@ -86,5 +111,28 @@ public Color getColor() {
 public void setColor(Color color) {
 	this.color = color;
 }
+
+
+public Image getImg() {
+	return img;
+}
+
+
+public void setImg(Image img) {
+	this.img = img;
+}
+
+
+public Point getPos() {
+	return pos;
+}
+
+
+public void setPos(Point pos) {
+	this.pos = pos;
+}
+
+
+
 
 }
