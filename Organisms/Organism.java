@@ -1,15 +1,23 @@
 package Organisms;
 
+import java.awt.Color;
+
+import Board.GameBoard;
+
 public abstract class Organism {
-public Organism(ORG _name,int _strengh, int _effort, int _x, int _y)
+public Organism(ORG _name,int _strengh, int _effort, int _x, int _y,GameBoard _board)
 {
-	name = _name;
-	strengh=_strengh;
-	effort = _effort;
-	X = _x;
-	Y = _y;
+	setName(_name);
+	setStrengh(_strengh);
+	setEffort(_effort);
+	setX(_x);
+	setY(_y);
+	setBoard(_board);
+	
+	board.addOrganism(this);
 }
 
+private GameBoard board;
 private ORG name;
 private int strengh;
 private int effort;
@@ -17,6 +25,7 @@ private int X;
 private int Y;
 private int age;//in turns
 private boolean alive;
+private Color color = Color.blue;
 
 public boolean isAlive() {
 	return alive;
@@ -60,5 +69,22 @@ public ORG getName() {
 public void setName(ORG name) {
 	this.name = name;
 }
-	
+
+int getID() 
+{
+	return java.lang.System.identityHashCode(this);
+}
+public GameBoard getBoard() {
+	return board;
+}
+public void setBoard(GameBoard board) {
+	this.board = board;
+}
+public Color getColor() {
+	return color;
+}
+public void setColor(Color color) {
+	this.color = color;
+}
+
 }
