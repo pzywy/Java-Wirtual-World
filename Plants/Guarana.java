@@ -3,11 +3,11 @@ package Plants;
 import java.awt.Color;
 import java.awt.Image;
 import Board.GameBoard;
-import Board.Point;
 import Organisms.ORG;
 import Organisms.Organism;
 import Organisms.Plant;
 import data.Images;
+import util.Point;
 
 public class Guarana extends Plant {
 
@@ -27,9 +27,11 @@ public class Guarana extends Plant {
 	
 	public void gotEaten(Organism org)
 	{
+		org.setMaxAge(org.getMaxAge()+10);
 		org.setStrengh(getStrengh()+3);
 		System.out.println(org.getName()+"ate guarana (+3 strengh)");
 		super.gotEaten(org);
+		
 	}
 	
 	protected void reproduct(Point _pos)
@@ -37,5 +39,7 @@ public class Guarana extends Plant {
 		new Guarana(_pos,board);
 		super.reproduct(_pos);
 	}
+	
+
 	
 }

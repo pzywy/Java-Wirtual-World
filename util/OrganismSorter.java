@@ -8,15 +8,15 @@ public class OrganismSorter implements Comparator<Organism> {
 
 	    @Override
 	    public int compare(Organism org1, Organism org2) {
-	    	if(org1.getEffort() > (org2.getEffort()))
+	    	if(org1.getEffort() < (org2.getEffort()))
 	    		return 1;
-	    	else if (org1.getEffort() < (org2.getEffort()))
+	    	else if (org1.getEffort() > (org2.getEffort()))
 	    		return -1;
 	    	else
 	    	{
-	    		if(org1.getAge() > (org2.getAge()))
+	    		if(org1.getAge() < (org2.getAge()))
 		    		return 1;
-		    	else if (org1.getAge() < (org2.getAge()))
+		    	else if (org1.getAge() > (org2.getAge()))
 		    		return -1;
 		    	else return 0;
 	    	}

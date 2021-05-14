@@ -5,7 +5,7 @@ import java.awt.Image;
 import java.util.Random;
 
 import Board.GameBoard;
-import Board.Point;
+import util.Point;
 
 public abstract class Organism {
 public Organism(ORG _name,int _strengh, int _effort, Point _pos,GameBoard _board)
@@ -24,7 +24,7 @@ public Organism(ORG _name,int _strengh, int _effort, Point _pos,GameBoard _board
 public int didPassCollision(Organism org)
 {
 	System.out.println(org.getName()+" attacked "+getName());
-	return 1;
+	return 0;
 }
 
 
@@ -36,12 +36,18 @@ public void turn()
 	//pos=new Point(pos.getX(),pos.getY()+1);
 		//dies of old
 	if(getAge()>=getMaxAge())died("of old in age " + getAge());
+	
 }
 
 public void died(String cause)
 {
 	alive=false;
 	System.out.println(getName()+" Died "+cause);
+	//del();
+}
+
+public void del()
+{
 	board.delOrganism(this);
 }
 
@@ -104,6 +110,7 @@ protected void terminateAllNeighbour()
 
 protected void attemtReproduct()
 {
+	if(getAge()<getReproduceAge() || reproductionChance<=0)return;
 	Random rand = new Random();
 	if(rand.nextInt((int)(1000/reproductionChance))==0)
 	{
@@ -117,8 +124,9 @@ protected void attemtReproduct()
 	}
 }
 protected void reproduct(Point pos) {
-	System.out.println("Reproduce "+getName()+ " on Pos: "+pos.getX()+" "+pos.getY());
+	//System.out.println("Reproduce "+getName()+ " on Pos: "+pos.getX()+" "+pos.getY());
 }
+
 
 protected int reproductionChance=2;//in percent
 protected GameBoard board;
@@ -131,6 +139,11 @@ private boolean alive;
 private Color color = Color.blue;
 private Image img;
 private int maxAge=100;
+
+protected int getReproduceAge()
+{
+	return 10;
+}
 
 public int getMaxAge() {
 	return maxAge;

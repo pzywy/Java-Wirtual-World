@@ -3,11 +3,11 @@ package Plants;
 import java.awt.Color;
 import java.awt.Image;
 import Board.GameBoard;
-import Board.Point;
 import Organisms.ORG;
 import Organisms.Organism;
 import Organisms.Plant;
 import data.Images;
+import util.Point;
 
 public class WolfBerries extends Plant {
 

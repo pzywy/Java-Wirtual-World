@@ -3,7 +3,13 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.swing.JPanel;
+
+import Organisms.Organism;
+import util.Point;
 
 
 public class PrintBoard extends JPanel {
@@ -23,34 +29,48 @@ public class PrintBoard extends JPanel {
 	@Override
 	protected void paintComponent(Graphics g)
 	{
+		super.paintComponent(g);
 		GameBoard.cellSide = ( getHeight()*10/GameBoard.rows ) / 11;
 				
-		super.paintComponent(g);
-		Graphics2D g2 = (Graphics2D)g;
+		
 		
 		//g2.setColor(new Color(86, 125, 70));   NICE GREEN
-		g2.setColor(new Color(194, 178, 128));
+		g.setColor(new Color(194, 178, 128));
 		
-		g2.fillRect(originX, originY,GameBoard.cellSide*(GameBoard.cols), GameBoard.cellSide*GameBoard.rows);
+		g.fillRect(originX, originY,GameBoard.cellSide*(GameBoard.cols), GameBoard.cellSide*GameBoard.rows);
 		
-		g2.setColor(Color.black);
-		printGrid(g2);
+		g.setColor(Color.black);
+		//printGrid(g);
 		
 		
+		List<Organism> organismsList = new ArrayList<Organism>(); 
+		organismsList = board.getListOfOrganisms();
 		
-		board.getListOfOrganisms().forEach((org) ->{
-			if(org.isAlive())
-				//drawCell(g2,org.getPos().getX(),org.getPos().getY(),org.getColor());
-				
-				drawImg(g2,org.getPos().getX(),org.getPos().getY(),org.getImg());
+		organismsList.forEach((org) ->{
+			if(org!=null&&org.isAlive())
+				drawImg(g,org.getPos().getX(),org.getPos().getY(),org.getImg());
 		});
 		
-//		for(int i = 0; i < board.getListOfOrganisms().size();i++)
+//		for(int x=0;x<board.cols;x++)
 //		{
-//			Organism org = board.getListOfOrganisms().get(i);
-//			if(org.isAlive())
-//				drawImg(g2,org.getPos().getX(),org.getPos().getY(),org.getImg());
+//			for(int y=0;y<board.rows;y++)
+//			{
+//				Organism org = board.getFromArray(new Point(x,y));
+//						if(org!=null&&org.isAlive())
+//							drawImg(g,org.getPos().getX(),org.getPos().getY(),org.getImg());
+//			}
 //		}
+		
+		
+//		for (Iterator<Organism> _org = board.getListOfOrganisms().iterator(); _org.hasNext();) {
+//			Organism org = _org.next();
+//			if(org!=null&&org.isAlive())
+//				drawImg(g2,org.getPos().getX(),org.getPos().getY(),org.getImg());
+//			//else if(org!=null&&org.isAlive()) org.del();
+//		}
+		
+		
+		
 		
 	}
 	
@@ -70,7 +90,7 @@ public class PrintBoard extends JPanel {
 				, 30, 30);
 	}
 	
-	private void drawImg(Graphics2D g,int row, int col, Image img)
+	private void drawImg(Graphics g,int row, int col, Image img)
 	{
 		int x = originX;
 		int y = originY;
@@ -81,7 +101,7 @@ public class PrintBoard extends JPanel {
 				,this);  
 	}
 	
-	private void printGrid(Graphics2D g)
+	private void printGrid(Graphics g)
 	{
 		for(int i=0;i<GameBoard.rows+1;i++)
 		{

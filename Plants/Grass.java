@@ -3,10 +3,10 @@ package Plants;
 import java.awt.Color;
 import java.awt.Image;
 import Board.GameBoard;
-import Board.Point;
 import Organisms.ORG;
 import Organisms.Plant;
 import data.Images;
+import util.Point;
 
 public class Grass extends Plant {
 
@@ -19,6 +19,8 @@ public class Grass extends Plant {
 	
 
 	}
+	
+	
 	
 	public Image getImg() {			
 		return Images.grass;

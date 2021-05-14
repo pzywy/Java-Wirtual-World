@@ -1,7 +1,7 @@
 package Organisms;
 
 import Board.GameBoard;
-import Board.Point;
+import util.Point;
 
 public abstract class Plant extends Organism {
 
@@ -29,7 +29,7 @@ public abstract class Plant extends Organism {
 	public void gotEaten(Organism org)
 	{
 		//if animal lives longer after eat.
-		org.setMaxAge(org.getMaxAge()+5);
+		org.setMaxAge(org.getMaxAge()+1);
 		died(" was eaten by "+org.getName());
 	}
 

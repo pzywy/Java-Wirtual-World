@@ -3,10 +3,11 @@ package Plants;
 import java.awt.Color;
 import java.awt.Image;
 import Board.GameBoard;
-import Board.Point;
 import Organisms.ORG;
+import Organisms.Organism;
 import Organisms.Plant;
 import data.Images;
+import util.Point;
 
 public class Milt extends Plant {
 
@@ -15,9 +16,7 @@ public class Milt extends Plant {
 		
 	setColor(Color.yellow);
 	reproductionChance = 20;
-	setMaxAge(100);
-	
-			
+	setMaxAge(100);	
 
 	}
 	
@@ -37,6 +36,13 @@ public class Milt extends Plant {
 	{		
 		new Milt(_pos,board);
 		super.reproduct(_pos);
+	}
+	
+	@Override
+	public void gotEaten(Organism org)
+	{
+		org.setMaxAge(org.getMaxAge()+1);
+		super.gotEaten(org);
 	}
 	
 }

@@ -17,10 +17,10 @@ private GameBoard board;
         while(GameControll.autoSymulate)
         {
         	GameControll.turn(board);
-        	if(board.getListOfOrganisms().size()<500)
-        		TimeUnit.MILLISECONDS.sleep(10);
-        	if(board.getListOfOrganisms().size()<1000)
-        		TimeUnit.MILLISECONDS.sleep(10);
+        	TimeUnit.MILLISECONDS.sleep(25);
+        	
+//        	if(board.getListOfOrganisms().size()<1000)
+//        		TimeUnit.MILLISECONDS.sleep(10); 	
         }
 		return null;
     }

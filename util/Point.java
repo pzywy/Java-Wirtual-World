@@ -1,4 +1,4 @@
-package Board;
+package util;
 
 public class Point {
 private int x;
