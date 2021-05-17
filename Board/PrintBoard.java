@@ -37,7 +37,7 @@ public class PrintBoard extends JPanel {
 		//g2.setColor(new Color(86, 125, 70));   NICE GREEN
 		g.setColor(new Color(194, 178, 128));
 		
-		g.fillRect(originX, originY,GameBoard.cellSide*(GameBoard.cols), GameBoard.cellSide*GameBoard.rows);
+		g.fillRect(originX, originY,GameBoard.cellSide*(GameBoard.cols+1), GameBoard.cellSide*(GameBoard.rows+1));
 		
 		g.setColor(Color.black);
 		//printGrid(g);

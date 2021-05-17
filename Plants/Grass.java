@@ -16,12 +16,8 @@ public class Grass extends Plant {
 	setColor(Color.green);
 	reproductionChance = 75;
 	setMaxAge(50);
-	
-
 	}
-	
-	
-	
+
 	public Image getImg() {			
 		return Images.grass;
 	}

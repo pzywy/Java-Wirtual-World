@@ -32,6 +32,8 @@ private static GameControll _frame;
 	public static void main(String[] args) {
 		GameBoard board = new GameBoard();
 		
+		
+		//setup input
 		GameBoard.lastInput='/';
 		_frame = new GameControll(board);
 		
@@ -52,6 +54,8 @@ private static GameControll _frame;
 		});
 		 _frame.frame.setAlwaysOnTop(true);
 		 
+		 
+		 // add organisms
 		new Milt(new Point(1,0),board);
 	
 		new Guarana(new Point(6,4),board);
@@ -83,11 +87,9 @@ private static GameControll _frame;
 	public static void turn(GameBoard board)
 	{
 		 _frame.frame.requestFocus();
-		board.turn();
+		board.turn(panel);
         panel.repaint();
         label.setText("Turn nr: "+GameBoard.turnCount);
-       
-       
 	}
 	
 	
@@ -106,7 +108,6 @@ private static GameControll _frame;
 		});
 		
 		JButton buttonAuto = new JButton("START/PAUSE");
-		
 		buttonAuto.addActionListener(new ActionListener() {
 
 		    @Override
@@ -134,21 +135,16 @@ private static GameControll _frame;
 	        public void componentResized(ComponentEvent evt) {
 	            Images.reload();
 	        }
-	});
-		
+		});
 		
 		label = new JLabel("Turn nr: "+GameBoard.turnCount);
 		frame.add(label,BorderLayout.BEFORE_FIRST_LINE);
-		
-		
 		frame.add(panel,BorderLayout.CENTER);
-		//frame.add(button,BorderLayout.AFTER_LINE_ENDS);
 		frame.add(buttonAuto,BorderLayout.AFTER_LAST_LINE);
-		
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setTitle("Wirtual World");
 		frame.pack();
-		frame.setSize(1000,600);
+		frame.setSize(1000,800);
 		frame.setVisible(true);		
 		Images.reload();
 	}

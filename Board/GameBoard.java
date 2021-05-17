@@ -4,6 +4,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 import Organisms.Organism;
 import util.OrganismSorter;
@@ -12,8 +13,8 @@ import util.Point;
 
 public class GameBoard {
 
-	public static final int cols=25;
-	public static final int rows=15;
+	public static final int cols=30;
+	public static final int rows=30;
 	public static int cellSide=25;
 	public static int turnCount=0;
 	
@@ -80,9 +81,9 @@ public class GameBoard {
 		turnIndexToMove=0;
 	}
 	
-	public void turn()
+	public void turn(JPanel panel)
 	{
-	
+		mainGamePanel = panel;
 		turnCount++;
 		addedOrganismsCount=0;turnIndexToMove=0;
 		
@@ -126,6 +127,13 @@ public class GameBoard {
 			sortOrganisms();
 		}
 		
+	}
+	
+	//instant repaint if needed (usualy it's done after every turn)
+	private static JPanel mainGamePanel;
+	public static void repaint()
+	{
+		mainGamePanel.repaint();
 	}
 	
 	@SuppressWarnings("unused")

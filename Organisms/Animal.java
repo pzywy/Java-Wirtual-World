@@ -61,7 +61,7 @@ public abstract class Animal extends Organism {
 		}
 		else
 		{
-			died("killed by" +org.getName() +" with strengh: "+getStrengh());
+			died("killed by" +org.getName() +" with strengh: "+org.getStrengh());
 			return 1;
 		}	
 	}
@@ -69,7 +69,7 @@ public abstract class Animal extends Organism {
 	@Override
 	protected int getReproduceAge()
 	{
-		return 50;
+		return 25;
 	}
 
 	public void move()

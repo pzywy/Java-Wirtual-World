@@ -13,6 +13,8 @@ public class Images {
 	private static float borschtMulti = 1.05f;
 	private static float grassMulti = 1.05f;
 	private static float sheepMulti = 1.07f;
+	private static float fireMulti = 1.05f;
+	private static float playerMulti = 1.3f;
 	
 	public static Image milt = Toolkit.getDefaultToolkit().getImage("src/data/milt.png")
 			.getScaledInstance((int)(GameBoard.cellSide*miltMulti), (int)(GameBoard.cellSide*miltMulti), Image.SCALE_SMOOTH);
@@ -27,7 +29,9 @@ public class Images {
 	public static Image sheep = Toolkit.getDefaultToolkit().getImage("src/data/sheep.png")
 			.getScaledInstance((int)(GameBoard.cellSide*sheepMulti), (int)(GameBoard.cellSide*sheepMulti), Image.SCALE_SMOOTH);
 	public static Image player = Toolkit.getDefaultToolkit().getImage("src/data/player.png")
-			.getScaledInstance((int)(GameBoard.cellSide*sheepMulti), (int)(GameBoard.cellSide*sheepMulti), Image.SCALE_SMOOTH);
+			.getScaledInstance((int)(GameBoard.cellSide*playerMulti), (int)(GameBoard.cellSide*playerMulti), Image.SCALE_SMOOTH);
+	public static Image fire = Toolkit.getDefaultToolkit().getImage("src/data/fire.png")
+			.getScaledInstance((int)(GameBoard.cellSide*fireMulti), (int)(GameBoard.cellSide*fireMulti), Image.SCALE_SMOOTH);
 	
 	public static void reload()
 	{
@@ -37,7 +41,8 @@ public class Images {
 		borscht = borscht.getScaledInstance((int)(GameBoard.cellSide*borschtMulti), (int)(GameBoard.cellSide*borschtMulti), Image.SCALE_SMOOTH);
 		grass = grass.getScaledInstance((int)(GameBoard.cellSide*grassMulti), (int)(GameBoard.cellSide*grassMulti), Image.SCALE_SMOOTH);
 		sheep = sheep.getScaledInstance((int)(GameBoard.cellSide*sheepMulti), (int)(GameBoard.cellSide*sheepMulti), Image.SCALE_SMOOTH);
-		player = player.getScaledInstance((int)(GameBoard.cellSide*sheepMulti), (int)(GameBoard.cellSide*sheepMulti), Image.SCALE_SMOOTH);
+		player = player.getScaledInstance((int)(GameBoard.cellSide*playerMulti), (int)(GameBoard.cellSide*playerMulti), Image.SCALE_SMOOTH);
+		fire = fire.getScaledInstance((int)(GameBoard.cellSide*fireMulti), (int)(GameBoard.cellSide*fireMulti), Image.SCALE_SMOOTH);
 		
 	}
 }

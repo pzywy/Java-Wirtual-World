@@ -28,8 +28,8 @@ public class Guarana extends Plant {
 	public void gotEaten(Organism org)
 	{
 		org.setMaxAge(org.getMaxAge()+10);
-		org.setStrengh(getStrengh()+3);
-		System.out.println(org.getName()+"ate guarana (+3 strengh)");
+		org.setStrengh(org.getStrengh()+3);
+		System.out.println(org.getName()+" ate guarana (+3 strengh)");
 		super.gotEaten(org);
 		
 	}

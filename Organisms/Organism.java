@@ -79,33 +79,7 @@ public Point getEmptyNeighbourCell()
 
 
 
-protected void terminateAllNeighbour()
-{
-	Point cell = new Point(-1,-1);
-	for(int i=1;i<=9;i++)
-	{
-		cell = new Point(-1 + (int)(i/3.5)	,(	(i % 3) + 1) % 3);
-		if(cell.getY()==2)	cell.setY(-1);
-		
-		if(cell.getX()==0&&cell.getY()==0)
-			continue;
-		
-		cell.setX(cell.getX()+pos.getX());
-		cell.setY(cell.getY()+pos.getY());
-		
-		if(cell.getX()<0 || cell.getY()<0 || cell.getY()>=GameBoard.rows || cell.getX()>=GameBoard.cols)
-			continue;
-		
-		Organism org = board.getFromArray(cell);
-		
-		if(org!=null&&org.isAlive()&&org.getName()!=getName())
-		{
-			//System.out.println("TERMINATE");
-			org.died("of termination");
-		}
-		
-	}
-}
+
 
 
 protected void attemtReproduct()

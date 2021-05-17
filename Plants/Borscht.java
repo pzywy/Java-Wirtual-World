@@ -23,10 +23,8 @@ public class Borscht extends Plant {
 	}
 	
 	public Image getImg() {
-		
-				
+			
 		return Images.borscht;
-
 	}
 	
 	@Override

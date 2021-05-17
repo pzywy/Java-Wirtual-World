@@ -16,9 +16,9 @@ private GameBoard board;
 
         while(GameControll.autoSymulate)
         {
-        	GameControll.turn(board);
-        	TimeUnit.MILLISECONDS.sleep(25);
-        	
+        	GameControll.turn(board);   
+        	//prevents too fast turns
+        	TimeUnit.MILLISECONDS.sleep(10); 
 //        	if(board.getListOfOrganisms().size()<1000)
 //        		TimeUnit.MILLISECONDS.sleep(10); 	
         }

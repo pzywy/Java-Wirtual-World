@@ -14,7 +14,7 @@ public class Sheep extends Animal {
 		super(ORG.OWCA, 4, 4, _pos, _board);
 		
 		setMaxAge(250);
-		reproductionChance = 500;
+		reproductionChance = 300;
 	}
 
 	@Override
