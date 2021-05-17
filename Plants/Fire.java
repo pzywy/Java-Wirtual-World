@@ -2,6 +2,8 @@ package Plants;
 
 import java.awt.Color;
 import java.awt.Image;
+import java.util.Random;
+
 import Board.GameBoard;
 import Organisms.ORG;
 import Organisms.Organism;
@@ -12,11 +14,11 @@ import util.Point;
 public class Fire extends Plant {
 
 	public Fire(Point _pos, GameBoard _board) {
-		super(ORG.TRAWA, 0, _pos, _board);
+		super(ORG.FIRE, 4, _pos, _board);
 		
 	setColor(Color.red);
 	reproductionChance = 150;
-	setMaxAge(5);
+	setMaxAge(4);
 	}
 	
 	@Override
@@ -48,6 +50,39 @@ public class Fire extends Plant {
 			return 1;
 		}
 		
+	}
+	
+	@Override
+	protected void attemtReproduct()
+	{
+		if(getAge()<getReproduceAge() || reproductionChance<=0)return;
+		Random rand = new Random();
+		if(rand.nextInt((int)(1000/reproductionChance))==0)
+		{
+			//System.out.println("Attempting reproduce "+getName()+ " on Pos: "+getPos().getX()+" "+getPos().getY());
+			Point pos = getRandomNeighbour();
+			
+			Organism org = board.getFromArray(pos);
+			if(pos.getX()!=-1&&org!=null&&(org.getStrengh()<=getStrengh() || org instanceof Plant) && org.getName()!=getName())
+			{
+				org.died("burned");
+				reproduct(pos);
+				//more duration due to burning something
+				board.getFromArray(pos).setMaxAge(board.getFromArray(pos).getMaxAge()*3);
+			}
+			else if(pos.getX()!=-1&&org==null)
+			{
+				reproduct(pos);
+			}
+		}
+	}
+	
+	@Override
+	public void gotEaten(Organism org)
+	{
+		//decrease max age after burn
+		org.setMaxAge(org.getMaxAge()-5);
+		super.gotEaten(org);
 	}
 	
 	

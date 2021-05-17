@@ -15,6 +15,8 @@ public class Images {
 	private static float sheepMulti = 1.07f;
 	private static float fireMulti = 1.05f;
 	private static float playerMulti = 1.3f;
+	private static float wolfMulti = 1.05f;
+	private static float turtleMulti = 1.05f;
 	
 	public static Image milt = Toolkit.getDefaultToolkit().getImage("src/data/milt.png")
 			.getScaledInstance((int)(GameBoard.cellSide*miltMulti), (int)(GameBoard.cellSide*miltMulti), Image.SCALE_SMOOTH);
@@ -32,6 +34,10 @@ public class Images {
 			.getScaledInstance((int)(GameBoard.cellSide*playerMulti), (int)(GameBoard.cellSide*playerMulti), Image.SCALE_SMOOTH);
 	public static Image fire = Toolkit.getDefaultToolkit().getImage("src/data/fire.png")
 			.getScaledInstance((int)(GameBoard.cellSide*fireMulti), (int)(GameBoard.cellSide*fireMulti), Image.SCALE_SMOOTH);
+	public static Image wolf = Toolkit.getDefaultToolkit().getImage("src/data/wolf.png")
+			.getScaledInstance((int)(GameBoard.cellSide*wolfMulti), (int)(GameBoard.cellSide*wolfMulti), Image.SCALE_SMOOTH);
+	public static Image turtle = Toolkit.getDefaultToolkit().getImage("src/data/turtle.png")
+			.getScaledInstance((int)(GameBoard.cellSide*turtleMulti), (int)(GameBoard.cellSide*turtleMulti), Image.SCALE_SMOOTH);
 	
 	public static void reload()
 	{
@@ -43,6 +49,8 @@ public class Images {
 		sheep = sheep.getScaledInstance((int)(GameBoard.cellSide*sheepMulti), (int)(GameBoard.cellSide*sheepMulti), Image.SCALE_SMOOTH);
 		player = player.getScaledInstance((int)(GameBoard.cellSide*playerMulti), (int)(GameBoard.cellSide*playerMulti), Image.SCALE_SMOOTH);
 		fire = fire.getScaledInstance((int)(GameBoard.cellSide*fireMulti), (int)(GameBoard.cellSide*fireMulti), Image.SCALE_SMOOTH);
-		
+		wolf = wolf.getScaledInstance((int)(GameBoard.cellSide*fireMulti), (int)(GameBoard.cellSide*fireMulti), Image.SCALE_SMOOTH);
+		turtle = turtle.getScaledInstance((int)(GameBoard.cellSide*fireMulti), (int)(GameBoard.cellSide*fireMulti), Image.SCALE_SMOOTH);
+
 	}
 }

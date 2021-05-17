@@ -40,6 +40,15 @@ public class Borscht extends Plant {
 	}
 	
 	
+	@Override
+	public void gotEaten(Organism org)
+	{
+		//borsch gives eternal life :)
+		org.setMaxAge(org.getMaxAge()+10000);
+		super.gotEaten(org);
+	}
+	
+	
 	protected void terminateAllAnimalNeighbour()
 	{
 		Point cell = new Point(-1,-1);

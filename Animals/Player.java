@@ -1,6 +1,7 @@
 package Animals;
 
 import java.awt.Image;
+import java.awt.event.KeyEvent;
 import java.util.concurrent.TimeUnit;
 
 import javax.swing.text.html.HTMLDocument.HTMLReader.SpecialAction;
@@ -69,23 +70,31 @@ public class Player extends Animal {
 			try {TimeUnit.MILLISECONDS.sleep(5);} catch (InterruptedException e) {e.printStackTrace();return new Point(-1,-1);}
 		}
 		
+		char lastInput = GameBoard.lastInput;
 		
-		if(GameBoard.lastInput==' ')
+		if(lastInput==' ')
 		{
 			specialAction();
 			return getDestination();
 		}
 		
 		//System.out.print("key: "+GameBoard.lastInput);
-		if(GameBoard.lastInput=='d'&&getPos().getX()+1<GameBoard.cols&&getPos().getX()+1>=0)
+		
+		
+		if((lastInput=='d'||lastInput=='D')
+				&&getPos().getX()+1<GameBoard.cols&&getPos().getX()+1>=0)
 			return(new Point(getPos().getX()+1,getPos().getY()));
-		else if(GameBoard.lastInput=='a'&&getPos().getX()-1<GameBoard.cols&&getPos().getX()-1>=0)
+		
+		else if((lastInput=='a'||lastInput=='A')
+				&&getPos().getX()-1<GameBoard.cols&&getPos().getX()-1>=0)
 			return(new Point(getPos().getX()-1,getPos().getY()));
 		
-		else if(GameBoard.lastInput=='w'&&getPos().getY()-1<GameBoard.rows&&getPos().getY()-1>=0)
+		else if((lastInput=='w'||lastInput=='W')
+				&&getPos().getY()-1<GameBoard.rows&&getPos().getY()-1>=0)
 			return(new Point(getPos().getX(),getPos().getY()-1));
 		
-		else if(GameBoard.lastInput=='s'&&getPos().getY()+1<GameBoard.rows&&getPos().getY()+1>=0)
+		else if((lastInput=='s'||lastInput=='S')
+				&&getPos().getY()+1<GameBoard.rows&&getPos().getY()+1>=0)
 			return(new Point(getPos().getX(),getPos().getY()+1));
 		
 		return new Point(-1,-1);

@@ -6,6 +6,7 @@ import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import Organisms.ORG;
 import Organisms.Organism;
 import util.OrganismSorter;
 import util.Point;
@@ -27,6 +28,7 @@ public class GameBoard {
 	private static int turnIndexToMove = 0;
 	private static boolean anythingAdedd=false;
 	private JFrame frame;
+	public Organism player=null;
 	
 	public GameBoard()
 	{
@@ -35,6 +37,13 @@ public class GameBoard {
 			organismArray[i]=null;
 			
 		}
+	}
+	
+	public void restart()
+	{
+		organismsList = new ArrayList<Organism>();
+		organismArray = new Organism[cols*rows];
+		turnCount=0;
 	}
 	
 	public List<Organism> getListOfOrganisms()
@@ -91,6 +100,7 @@ public class GameBoard {
 		
 		for(int i = 0; i <organismsList.size() ;i++)
 		{		
+			if(player==null&&organismsList.get(i).getName()==ORG.GRACZ)player=organismsList.get(i);
 			currentIterateIndex=i;
 			
 			//prevent double tours after some organism dead
@@ -129,6 +139,7 @@ public class GameBoard {
 		
 	}
 	
+
 	//instant repaint if needed (usualy it's done after every turn)
 	private static JPanel mainGamePanel;
 	public static void repaint()

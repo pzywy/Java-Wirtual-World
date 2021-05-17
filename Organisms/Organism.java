@@ -78,7 +78,30 @@ public Point getEmptyNeighbourCell()
 }
 
 
-
+public Point getRandomNeighbour()
+{
+	Point cell = new Point(0,0);
+	int tries=0;
+	while(cell.getX()+getPos().getX()<0 || cell.getY()+getPos().getY()<0 
+			|| cell.getY()+getPos().getY()>=GameBoard.rows || cell.getX()+getPos().getX()>=GameBoard.cols
+			||(cell.getX()==0&&cell.getY()==0))
+	{
+		tries++;
+		if(tries>5)return new Point(-1,-1);
+		Random rand = new Random();
+		int i = rand.nextInt(10);		
+		if(i%2==1)
+			if(i<9)i++;
+			else i--;
+		
+		cell = new Point(-1 + (int)(i/3.5)	,(	(i % 3) + 1) % 3);
+		if(cell.getY()==2)cell.setY(-1);
+		
+	}
+	cell.setX(cell.getX()+getPos().getX());
+	cell.setY(cell.getY()+getPos().getY());
+	return cell;
+}
 
 
 

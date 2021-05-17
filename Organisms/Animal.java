@@ -54,6 +54,7 @@ public abstract class Animal extends Organism {
 			return 0;
 		}
 		
+		//think about delete die function here, its already in move()
 		else if(org.getStrengh()<getStrengh())
 		{
 			org.died("killed by "+getName()+" with strengh: "+getStrengh());
@@ -62,8 +63,15 @@ public abstract class Animal extends Organism {
 		else
 		{
 			died("killed by" +org.getName() +" with strengh: "+org.getStrengh());
+			gotEaten(org);
 			return 1;
 		}	
+	}
+	
+	//add max age based on organism strengh
+	public void gotEaten(Organism org)
+	{
+		org.setMaxAge(org.getMaxAge()+getStrengh()*5);
 	}
 	
 	@Override
@@ -98,28 +106,5 @@ public abstract class Animal extends Organism {
 		
 	}
 	
-	public Point getRandomNeighbour()
-	{
-		Point cell = new Point(0,0);
-		int tries=0;
-		while(cell.getX()+getPos().getX()<0 || cell.getY()+getPos().getY()<0 
-				|| cell.getY()+getPos().getY()>=GameBoard.rows || cell.getX()+getPos().getX()>=GameBoard.cols
-				||(cell.getX()==0&&cell.getY()==0))
-		{
-			tries++;
-			if(tries>5)return new Point(-1,-1);
-			Random rand = new Random();
-			int i = rand.nextInt(10);		
-			if(i%2==1)
-				if(i<9)i++;
-				else i--;
-			
-			cell = new Point(-1 + (int)(i/3.5)	,(	(i % 3) + 1) % 3);
-			if(cell.getY()==2)cell.setY(-1);
-			
-		}
-		cell.setX(cell.getX()+getPos().getX());
-		cell.setY(cell.getY()+getPos().getY());
-		return cell;
-	}
+	
 }
