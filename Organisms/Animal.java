@@ -68,11 +68,7 @@ public abstract class Animal extends Organism {
 		}	
 	}
 	
-	//add max age based on organism strengh
-	public void gotEaten(Organism org)
-	{
-		org.setMaxAge(org.getMaxAge()+getStrengh()*5);
-	}
+
 	
 	@Override
 	protected int getReproduceAge()

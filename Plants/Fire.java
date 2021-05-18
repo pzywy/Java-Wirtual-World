@@ -17,8 +17,8 @@ public class Fire extends Plant {
 		super(ORG.FIRE, 4, _pos, _board);
 		
 	setColor(Color.red);
-	reproductionChance = 150;
-	setMaxAge(4);
+	reproductionChance = 250;
+	setMaxAge(2);
 	}
 	
 	@Override
@@ -68,7 +68,7 @@ public class Fire extends Plant {
 				org.died("burned");
 				reproduct(pos);
 				//more duration due to burning something
-				board.getFromArray(pos).setMaxAge(board.getFromArray(pos).getMaxAge()*3);
+				board.getFromArray(pos).setMaxAge(board.getFromArray(pos).getMaxAge()*4);
 			}
 			else if(pos.getX()!=-1&&org==null)
 			{
@@ -81,8 +81,8 @@ public class Fire extends Plant {
 	public void gotEaten(Organism org)
 	{
 		//decrease max age after burn
-		org.setMaxAge(org.getMaxAge()-5);
-		super.gotEaten(org);
+		org.setMaxAge(org.getMaxAge()-getStrengh()*2);
+		died("");
 	}
 	
 	

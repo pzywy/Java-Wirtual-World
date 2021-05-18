@@ -26,12 +26,7 @@ public abstract class Plant extends Organism {
 		return 1;
 	}
 	
-	public void gotEaten(Organism org)
-	{
-		//if animal lives longer after eat.
-		org.setMaxAge(org.getMaxAge()+3);
-		died(" was eaten by "+org.getName());
-	}
+
 
 	
 	

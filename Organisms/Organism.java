@@ -103,7 +103,12 @@ public Point getRandomNeighbour()
 	return cell;
 }
 
-
+public void gotEaten(Organism org)
+{
+	//animal lives longer after eat.
+	org.setMaxAge(org.getMaxAge() + getStrengh()*5 + 5);
+	died(" was eaten by "+org.getName());
+}
 
 protected void attemtReproduct()
 {
