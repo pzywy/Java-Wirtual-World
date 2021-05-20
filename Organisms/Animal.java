@@ -50,8 +50,10 @@ public abstract class Animal extends Organism {
 	{
 		if(getName()==org.getName())
 		{	
+			//System.out.println("collision with same specie on pos" + org.getPos().getX() +", "+org.getPos().getY());
 			attemtReproduct();
 			return 0;
+			
 		}
 		
 		//think about delete die function here, its already in move()
@@ -78,7 +80,6 @@ public abstract class Animal extends Organism {
 
 	public void move()
 	{
-		
 		Point dest = getRandomNeighbour();
 		if(dest.getX()<0||dest.getY()<0)return;
 		

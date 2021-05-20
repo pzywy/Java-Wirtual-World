@@ -2,6 +2,8 @@ package Plants;
 
 import java.awt.Color;
 import java.awt.Image;
+
+import Animals.CyberSheep;
 import Board.GameBoard;
 import Organisms.Animal;
 import Organisms.ORG;
@@ -16,11 +18,13 @@ public class Borscht extends Plant {
 		super(ORG.BARSZCZ, 999, _pos, _board);
 		
 	setColor(Color.white);
-	reproductionChance = 1;
-	setMaxAge(1000);
+	reproductionChance = 3;
+	setMaxAge(1200);
 	
 
 	}
+	
+	public boolean aimed=false;
 	
 	public Image getImg() {
 			
@@ -44,7 +48,9 @@ public class Borscht extends Plant {
 	public void gotEaten(Organism org)
 	{
 		//borsch gives eternal life :)
-		org.setMaxAge(org.getMaxAge()+10000);
+		org.setMaxAge(org.getMaxAge()+100);
+		if(org.getName()!=ORG.CYBEROWCA)org.died("of borscht");
+		else { ((CyberSheep)org).borschtPos.setX(-1);}
 		super.gotEaten(org);
 	}
 	
@@ -68,7 +74,7 @@ public class Borscht extends Plant {
 			
 			Organism org = board.getFromArray(cell);
 			
-			if(org!=null&&org.isAlive()&&org.getName()!=getName()&&org instanceof Animal)
+			if(org!=null&&org.isAlive()&&org.getName()!=getName()&&org instanceof Animal&&org.getName()!=ORG.CYBEROWCA)
 			{
 				//System.out.println("TERMINATE");
 				org.died("of termination");

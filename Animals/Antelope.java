@@ -8,31 +8,31 @@ import Organisms.ORG;
 import data.Images;
 import util.Point;
 
-public class Sheep extends Animal {
+public class Antelope extends Animal {
 
-	public Sheep(Point _pos, GameBoard _board) {
-		super(ORG.OWCA, 4, 4, _pos, _board);
+	public Antelope(Point _pos, GameBoard _board) {
+		super(ORG.ANTYLOPA, 4, 4, _pos, _board);
 		
-		setMaxAge(450);
-		reproductionChance = 600;
+		setMaxAge(550);
+		reproductionChance = 600;//300
 	}
 
 	@Override
 	public void turn() {
-		
+		move();
 		super.turn();
 		//System.out.println("Sheep ID: "+getID()+" "+getPos().getX()+", "+getPos().getY());
 	}
 	
 	@Override
 	public Image getImg() {
-		return Images.sheep;
+		return Images.antelope;
 	}
 	
 	@Override
 	protected void reproduct(Point _pos)
 	{		
-		new Sheep(_pos,board);
+		new Antelope(_pos,board);
 		super.reproduct(_pos);
 	}
 	

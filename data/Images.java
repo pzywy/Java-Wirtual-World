@@ -17,6 +17,8 @@ public class Images {
 	private static float playerMulti = 1.3f;
 	private static float wolfMulti = 1.05f;
 	private static float turtleMulti = 1.05f;
+	private static float antelopeMulti = 1.05f;
+	private static float cyberSheepMulti = 1.05f;
 	
 	private static Image _milt = Toolkit.getDefaultToolkit().getImage("src/data/milt.png");
 	private static Image _guarana = Toolkit.getDefaultToolkit().getImage("src/data/guarana.png");
@@ -28,6 +30,8 @@ public class Images {
 	private static Image _fire = Toolkit.getDefaultToolkit().getImage("src/data/fire.png");
 	private static Image _wolf = Toolkit.getDefaultToolkit().getImage("src/data/wolf.png");
 	private static Image _turtle = Toolkit.getDefaultToolkit().getImage("src/data/turtle.png");
+	private static Image _antelope = Toolkit.getDefaultToolkit().getImage("src/data/antelope.png");
+	private static Image _cyberSheep = Toolkit.getDefaultToolkit().getImage("src/data/cybersheep.png");
 	
 	public static Image milt = _milt;
 	public static Image guarana = _guarana;
@@ -39,6 +43,8 @@ public class Images {
 	public static Image fire = _fire;
 	public static Image wolf = _wolf;
 	public static Image turtle = _turtle;
+	public static Image antelope = _antelope;
+	public static Image cyberSheep = _cyberSheep;
 	public static void reload()
 	{
 		milt = _milt.getScaledInstance((int)(GameBoard.cellSide*miltMulti), (int)(GameBoard.cellSide*miltMulti), Image.SCALE_SMOOTH);
@@ -51,6 +57,7 @@ public class Images {
 		fire = _fire.getScaledInstance((int)(GameBoard.cellSide*fireMulti), (int)(GameBoard.cellSide*fireMulti), Image.SCALE_SMOOTH);
 		turtle = _turtle.getScaledInstance((int)(GameBoard.cellSide*turtleMulti), (int)(GameBoard.cellSide*turtleMulti), Image.SCALE_SMOOTH);
 		wolf = _wolf.getScaledInstance((int)(GameBoard.cellSide*wolfMulti), (int)(GameBoard.cellSide*wolfMulti), Image.SCALE_SMOOTH);
-		
+		antelope = _antelope.getScaledInstance((int)(GameBoard.cellSide*antelopeMulti), (int)(GameBoard.cellSide*antelopeMulti), Image.SCALE_SMOOTH);
+		cyberSheep = _cyberSheep.getScaledInstance((int)(GameBoard.cellSide*cyberSheepMulti), (int)(GameBoard.cellSide*cyberSheepMulti), Image.SCALE_SMOOTH);
 	}
 }

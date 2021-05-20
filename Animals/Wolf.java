@@ -13,8 +13,8 @@ public class Wolf extends Animal {
 	public Wolf(Point _pos, GameBoard _board) {
 		super(ORG.WILK, 9, 5, _pos, _board);
 		
-		setMaxAge(250);
-		reproductionChance = 150;
+		setMaxAge(400);
+		reproductionChance = 450;
 	}
 
 	@Override

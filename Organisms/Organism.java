@@ -15,7 +15,7 @@ public Organism(ORG _name,int _strengh, int _effort, Point _pos,GameBoard _board
 	setEffort(_effort);
 	setPos(_pos);
 	setBoard(_board);
-	setAlive(true);
+	//setAlive(true);
 	setAge(0);
 	board.addOrganism(this);
 }
@@ -35,6 +35,7 @@ public void turn()
 	setAge(age+1);
 	//pos=new Point(pos.getX(),pos.getY()+1);
 		//dies of old
+	if((getAge()>=getMaxAge()*0.2)&&isWasEating()==false)died("of starvation age " + getAge());//||getAge()>=100 - eventual
 	if(getAge()>=getMaxAge())died("of old in age " + getAge());
 	
 }
@@ -108,13 +109,14 @@ public void gotEaten(Organism org)
 	//animal lives longer after eat.
 	org.setMaxAge(org.getMaxAge() + getStrengh()*5 + 5);
 	died(" was eaten by "+org.getName());
+	org.setWasEating(true);
 }
 
 protected void attemtReproduct()
 {
 	if(getAge()<getReproduceAge() || reproductionChance<=0)return;
 	Random rand = new Random();
-	if(rand.nextInt((int)(1000/reproductionChance))==0)
+	if(rand.nextInt((int)(1000/reproductionChance))==0&&isWasEating())
 	{
 		//System.out.println("Attempting reproduce "+getName()+ " on Pos: "+getPos().getX()+" "+getPos().getY());
 		Point pos = getEmptyNeighbourCell();
@@ -137,10 +139,11 @@ private int strengh;
 private int effort;
 private Point pos;
 private int age;//in turns
-private boolean alive;
+private boolean alive=false;
 private Color color = Color.blue;
 private Image img;
 private int maxAge=100;
+private boolean wasEating=false;//to prevent to much reproduction
 
 protected int getReproduceAge()
 {
@@ -223,6 +226,14 @@ public Point getPos() {
 
 public void setPos(Point pos) {
 	this.pos = pos;
+}
+
+public boolean isWasEating() {
+	return wasEating;
+}
+
+public void setWasEating(boolean wasEating) {
+	this.wasEating = wasEating;
 }
 
 

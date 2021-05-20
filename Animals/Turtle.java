@@ -16,7 +16,7 @@ public class Turtle extends Animal {
 		super(ORG.ZOLW, 2, 1, _pos, _board);
 		
 		setMaxAge(5000);
-		reproductionChance = 200;
+		reproductionChance = 500;
 	}
 
 	@Override

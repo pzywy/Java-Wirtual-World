@@ -7,6 +7,7 @@ import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.Random;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -14,6 +15,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import Animals.Antelope;
+import Animals.CyberSheep;
 import Animals.Player;
 import Animals.Sheep;
 import Animals.Turtle;
@@ -52,28 +55,40 @@ public class GameControll{
 	
 	private static void putOrganismsOnBoard(GameBoard board)
 	{
-		new Milt(new Point(1,0),board);
 		
-		new Guarana(new Point(6,4),board);
+		int maxX=GameBoard.cols;
+		int maxY=GameBoard.rows;
+		Random rand = new Random();
 		
-		new WolfBerries(new Point(18,12),board);
+		new Player(new Point((int)maxX/2,(int)maxY/2),board);
 		
-		new Borscht(new Point(16,12),board);
+		for (int x  = 0;x<maxX;x++)
+		{
+			for(int y = 0;y<maxY;y++)
+			{
+				
+				if(board.getFromArray(new Point(x,y))==null)
+				{	
+					if(rand.nextInt(100)==0)new Grass(new Point(x,y),board);
+					else if(rand.nextInt(100)==0)new Milt(new Point(x,y),board);
+					else if(rand.nextInt(100)==0)new Sheep(new Point(x,y),board);
+					else if(rand.nextInt(100)==0)new Antelope(new Point(x,y),board);
+					else if(rand.nextInt(100)==0)new Wolf(new Point(x,y),board);
+					else if(rand.nextInt(100)==0)new Turtle(new Point(x,y),board);
+					else if(rand.nextInt(100)==0)new Guarana(new Point(x,y),board);
+					else if(rand.nextInt(30)==0)new CyberSheep(new Point(x,y),board);
+					else if(rand.nextInt(100)==0)new WolfBerries(new Point(x,y),board);
+					else if(rand.nextInt(100)==0)new Borscht(new Point(x,y),board);
+					
+				}
+				
+				
+			}
+		}
+
 		
-		new Grass(new Point(19,0),board);
-		
-		new Player(new Point(11,11),board);
-		
-		new Sheep(new Point(5,5),board);
-		new Sheep(new Point(5,6),board);
-		new Sheep(new Point(6,6),board);
-		
-		new Wolf(new Point(25,15),board);
-		new Wolf(new Point(26,15),board);
 		
 		
-		new Turtle(new Point(0,5),board);
-		new Turtle(new Point(1,6),board);
 		board.sortOrganisms();
 	}
 	

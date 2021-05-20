@@ -9,6 +9,7 @@ public abstract class Plant extends Organism {
 	
 	public Plant(ORG _name, int _strengh, Point _pos,GameBoard _board) {
 		super(_name, _strengh, 0, _pos,_board);
+		setWasEating(true);
 	}
 
 	

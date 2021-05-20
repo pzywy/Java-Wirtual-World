@@ -23,12 +23,14 @@ public class GameBoard {
 	private Organism[] organismArray = new Organism[cols*rows];
 	
 	public static char lastInput='/';
-	private static int addedOrganismsCount=0;
-	private static int currentIterateIndex=0;
-	private static int turnIndexToMove = 0;
+	private int addedOrganismsCount=0;
+	private int currentIterateIndex=0;
+	private int turnIndexToMove = 0;
 	private static boolean anythingAdedd=false;
 	private JFrame frame;
 	public Organism player=null;
+	//to improve performance
+	public boolean areBorschtesOnBoard = false;
 	
 	public GameBoard()
 	{
@@ -46,6 +48,19 @@ public class GameBoard {
 		turnCount=0;
 	}
 	
+	private void restartBoard()
+	{
+		for(int i=0;i<cols*rows;i++)
+		{
+			if(organismArray[i]!=null&&organismArray[i].isAlive()==false) 
+			{
+				System.out.println(organismArray[i].getName() +" Deleted");				
+				organismArray[i]=null;
+
+			}
+		}
+	}
+	
 	public List<Organism> getListOfOrganisms()
 	{
 		List<Organism> _organismsList = new ArrayList<Organism>();
@@ -57,7 +72,16 @@ public class GameBoard {
 	{
 		if(pos.getX()<0 || pos.getY()<0 || pos.getY()>rows || pos.getX()>cols)
 			return;
+		
+		if(org!=null)
+			{
+			org.setAlive(true);
+			//to improve performance (sets that borsches are or not on board to avoid pointless loops in cybersheep)
+			if(!areBorschtesOnBoard&&org.getName()==ORG.BARSZCZ)areBorschtesOnBoard=true;
+			}
+		
 		organismArray[pos.getY()*cols + pos.getX()]= org;
+		
 	}
 	public Organism getFromArray(Point pos)
 	{
@@ -72,13 +96,14 @@ public class GameBoard {
 		addToArray(org, org.getPos());
 		organismsList.add(0,org);
 		anythingAdedd=true;
+		
 	}
 	
 	public void delOrganism(Organism org)
 	{
 		
 		if(currentIterateIndex>organismsList.indexOf(org))turnIndexToMove++;
-		if(getFromArray(org.getPos())==null&&getFromArray(org.getPos()).getID()==org.getID())
+		if(getFromArray(org.getPos())!=null&&getFromArray(org.getPos()).getID()==org.getID())
 			addToArray(null, org.getPos());		
 		organismsList.remove(org);	
 	}
@@ -118,7 +143,7 @@ public class GameBoard {
 			else
 				org.del();
 			
-			
+			if(turnCount%100==0)restartBoard();
 		}
 		
 		Iterator<Organism> orgIt = organismsList.iterator();
