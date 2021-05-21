@@ -49,13 +49,14 @@ public class CyberSheep extends Animal {
 		}
 		borschtPos=new Point (-1,-1);
 	}
-	@Override
+	
+	@Override // to go to borscht
 	public Point getRandomNeighbour()
 	{
 		Point cell = new Point(0,0);
 		int tries=0;
 		while(cell.getX()+getPos().getX()<0 || cell.getY()+getPos().getY()<0 
-				|| cell.getY()+getPos().getY()>=GameBoard.rows || cell.getX()+getPos().getX()>=GameBoard.cols
+				|| cell.getY()+getPos().getY()>=board.rows || cell.getX()+getPos().getX()>=board.cols
 				||(cell.getX()==0&&cell.getY()==0))
 		{
 			tries++;

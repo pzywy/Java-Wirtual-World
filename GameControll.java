@@ -1,9 +1,6 @@
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.GridLayout;
-import java.awt.Rectangle;
-import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ComponentAdapter;
@@ -14,7 +11,6 @@ import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 import javax.swing.BorderFactory;
-import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -47,10 +43,6 @@ public class GameControll{
 		
 		createBoard();
 		
-		
-		//TODO:
-		//Create some limits of one species on board
-	
 	}
 	static private GameBoard board;
 	private static GameControll _frame;
@@ -64,13 +56,13 @@ public class GameControll{
 	private static void putOrganismsOnBoard(GameBoard board)
 	{
 		
-		int maxX=GameBoard.cols;
-		int maxY=GameBoard.rows;
+		int maxX=board.cols;
+		int maxY=board.rows;
 		Random rand = new Random();
 		
 		new Player(new Point((int)maxX/2,(int)maxY/2),board);
 		
-		for (int x  = 0;x<maxX;x++)
+		for (int x = 0;x<maxX;x++)
 		{
 			for(int y = 0;y<maxY;y++)
 			{
@@ -92,11 +84,7 @@ public class GameControll{
 				
 				
 			}
-		}
-
-		
-		
-		
+		}	
 		board.sortOrganisms();
 	}
 	
@@ -107,7 +95,7 @@ public class GameControll{
 		putOrganismsOnBoard(board);
 	}
 	
-	public static void restart()
+	public void restart()
 	{
 		_frame.frame.dispose();
 		board.restart();
@@ -116,79 +104,14 @@ public class GameControll{
 		createBoard();
 	}
 	
-	private static void loadFromfile()
-	{
-		String input;
-		try {
-			input = board.loadFromFile();
-			TimeUnit.MILLISECONDS.sleep(1000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-			return;
-		} 
-		
-		_frame.frame.dispose();
-		board.restart();
-		if(worker!=null)worker.cancel(true);
-		autoSymulate=false;
-		board = new GameBoard();
-		_frame = new GameControll(board);
-			
-		//System.out.print(input);
-		
-		String[] lines = input.split("\n");
-		System.out.println(lines.length);
-		for(int i=0;i<lines.length;i++)
-		{
-			System.out.println("index: "+i+" "+lines[i]);
-			Organism org;
-			Point pos = new Point(-1,-1);
-			String[] vars = lines[i].split(" ");
-				
-			
-				pos = new Point(Integer.parseInt(vars[3]),Integer.parseInt(vars[4]));
-				if(vars[0].equals(ORG.ANTYLOPA.toString()))org = new Antelope(pos, board);
-				else if(vars[0].equals(ORG.BARSZCZ.toString()))org = new Borscht(pos, board);
-				else if(vars[0].equals(ORG.CYBEROWCA.toString()))org = new CyberSheep(pos, board);
-				else if(vars[0].equals(ORG.FIRE.toString()))org = new Fire(pos, board);
-				else if(vars[0].equals(ORG.GRACZ.toString()))org = new Player(pos, board);
-				else if(vars[0].equals(ORG.GUARANA.toString()))org = new Guarana(pos, board);
-				//else if(vars[0].equals(ORG.LIS.toString()))org = new Fox(pos, board);
-				else if(vars[0].equals(ORG.MLECZ.toString()))org = new Milt(pos, board);
-				else if(vars[0].equals(ORG.OWCA.toString()))org = new Sheep(pos, board);
-				else if(vars[0].equals(ORG.TRAWA.toString()))org = new Grass(pos, board);
-				else if(vars[0].equals(ORG.WILCZEJAGODY.toString()))org = new WolfBerries(pos, board);
-				else if(vars[0].equals(ORG.WILK.toString()))org = new Wolf(pos, board);
-				else if(vars[0].equals(ORG.ZOLW.toString()))org = new Turtle(pos, board);
-				else {
-					System.out.println(vars[0]+ " didnt match any entity");
-					org = null;
-				}
-				
-				if(org!=null)
-				{
-					org.setAge(Integer.parseInt(vars[1]));
-					org.setMaxAge(Integer.parseInt(vars[2]));
-					org.setStrengh(Integer.parseInt(vars[5]));
-					if(vars[6].equals("true"))
-						org.setWasEating(true);
-					
-					System.out.println(org.getName().toString()+" "+org.getAge()+" "+org.getMaxAge()
-					  +" "+org.getPos().getX()
-					  +" "+org.getPos().getY()+" "+org.getStrengh()+" "+org.isWasEating() + "\n");
-				}	
-		}
-		
-		System.out.println("END");
-		board.sortOrganisms();
-	}
+	
 	
 	public static void turn(GameBoard board)
 	{
 		 _frame.frame.requestFocus();
 		board.turn(panel);
         panel.repaint();
-        label.setText("Turn nr: "+GameBoard.turnCount+"\n Player lived/max : "
+        label.setText("Turn nr: "+board.turnCount+"\n Player lived/max : "
         +board.player.getAge()+"/"+board.player.getMaxAge()+" strengh: "+board.player.getStrengh());
 	}
 	
@@ -253,18 +176,18 @@ public class GameControll{
 		
 		frame.addComponentListener(new ComponentAdapter() 
 		{  
-	        public void componentResized(ComponentEvent evt) {
-	            Images.reload();
-//	            int W = 65;  
-//	            int H = 80;  
+	        public void componentResized(ComponentEvent evt) {   
+//	            int width = 7;  
+//	            int heigh = 8;  
 //	            Rectangle b = evt.getComponent().getBounds();
-//	            evt.getComponent().setBounds(b.x, b.y, b.width, b.width*H/W);
+//	            evt.getComponent().setBounds(b.x, b.y, b.width, b.width*width/heigh);
+	            Images.reload(board);
 	        }
 		});
 		
 		JLabel container = new JLabel();
 		JPanel box = new JPanel();
-		label = new JLabel("Turn nr: "+GameBoard.turnCount+"\n Player lived/max : 0"
+		label = new JLabel("Turn nr: "+board.turnCount+"\n Player lived/max : 0"
 		        +"/1000 "+" strengh: 5");
 		
 		container.setLayout(new GridLayout());	
@@ -274,7 +197,7 @@ public class GameControll{
 		box.add(button);
 		container.add(label);
 		container.add(box);
-		container.setPreferredSize(new Dimension(670,60));
+		container.setPreferredSize(new Dimension(700,40));
 		
 		
 		frame.setLayout(new BorderLayout());
@@ -285,10 +208,10 @@ public class GameControll{
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setTitle("Wirtual World");
 		frame.pack();
-		frame.setSize(670,800);
-		frame.setMinimumSize(new Dimension(325,400));
+		frame.setSize(700,800);
+		frame.setMinimumSize(new Dimension(350,400));
 		frame.setVisible(true);		
-		Images.reload();
+		Images.reload(board);
 		
 		//keyboard handling
 		frame.addKeyListener(new KeyListener() {		
@@ -309,5 +232,72 @@ public class GameControll{
 				
 			}
 		});
+	}
+	
+	private static void loadFromfile()
+	{
+		String input="";
+		try {
+			input = board.loadFromFile();
+			TimeUnit.MILLISECONDS.sleep(250);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+			return;
+		} 
+		if(input==null||input=="")return;
+		_frame.frame.dispose();
+		board.restart();
+		if(worker!=null)worker.cancel(true);
+		autoSymulate=false;
+		board = new GameBoard();
+		_frame = new GameControll(board);
+			
+		//System.out.print(input);
+		
+		String[] lines = input.split("\n");
+		System.out.println(lines.length);
+		for(int i=0;i<lines.length;i++)
+		{
+			System.out.println("index: "+i+" "+lines[i]);
+			Organism org;
+			Point pos = new Point(-1,-1);
+			String[] vars = lines[i].split(" ");
+				
+			
+				pos = new Point(Integer.parseInt(vars[3]),Integer.parseInt(vars[4]));
+				if(vars[0].equals(ORG.ANTYLOPA.toString()))org = new Antelope(pos, board);
+				else if(vars[0].equals(ORG.BARSZCZ.toString()))org = new Borscht(pos, board);
+				else if(vars[0].equals(ORG.CYBEROWCA.toString()))org = new CyberSheep(pos, board);
+				else if(vars[0].equals(ORG.FIRE.toString()))org = new Fire(pos, board);
+				else if(vars[0].equals(ORG.GRACZ.toString()))org = new Player(pos, board);
+				else if(vars[0].equals(ORG.GUARANA.toString()))org = new Guarana(pos, board);
+				//else if(vars[0].equals(ORG.LIS.toString()))org = new Fox(pos, board);
+				else if(vars[0].equals(ORG.MLECZ.toString()))org = new Milt(pos, board);
+				else if(vars[0].equals(ORG.OWCA.toString()))org = new Sheep(pos, board);
+				else if(vars[0].equals(ORG.TRAWA.toString()))org = new Grass(pos, board);
+				else if(vars[0].equals(ORG.WILCZEJAGODY.toString()))org = new WolfBerries(pos, board);
+				else if(vars[0].equals(ORG.WILK.toString()))org = new Wolf(pos, board);
+				else if(vars[0].equals(ORG.ZOLW.toString()))org = new Turtle(pos, board);
+				else {
+					System.out.println(vars[0]+ " didnt match any entity");
+					org = null;
+				}
+				
+				if(org!=null)
+				{
+					org.setAge(Integer.parseInt(vars[1]));
+					org.setMaxAge(Integer.parseInt(vars[2]));
+					org.setStrengh(Integer.parseInt(vars[5]));
+					if(vars[6].equals("true"))
+						org.setWasEating(true);
+					
+					System.out.println(org.getName().toString()+" "+org.getAge()+" "+org.getMaxAge()
+					  +" "+org.getPos().getX()
+					  +" "+org.getPos().getY()+" "+org.getStrengh()+" "+org.isWasEating() + "\n");
+				}	
+		}
+		
+		System.out.println("END of Load, succes");
+		board.sortOrganisms();
 	}
 }

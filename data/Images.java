@@ -45,19 +45,19 @@ public class Images {
 	public static Image turtle = _turtle;
 	public static Image antelope = _antelope;
 	public static Image cyberSheep = _cyberSheep;
-	public static void reload()
+	public static void reload(GameBoard board)
 	{
-		milt = _milt.getScaledInstance((int)(GameBoard.cellSide*miltMulti), (int)(GameBoard.cellSide*miltMulti), Image.SCALE_SMOOTH);
-		guarana = _guarana.getScaledInstance((int)(GameBoard.cellSide*guaranaMulti), (int)(GameBoard.cellSide*guaranaMulti), Image.SCALE_SMOOTH);
-		wolfBerries = _wolfBerries.getScaledInstance((int)(GameBoard.cellSide*wolfBMulti), (int)(GameBoard.cellSide*wolfBMulti), Image.SCALE_SMOOTH);
-		borscht = _borscht.getScaledInstance((int)(GameBoard.cellSide*borschtMulti), (int)(GameBoard.cellSide*borschtMulti), Image.SCALE_SMOOTH);
-		grass = _grass.getScaledInstance((int)(GameBoard.cellSide*grassMulti), (int)(GameBoard.cellSide*grassMulti), Image.SCALE_SMOOTH);
-		sheep = _sheep.getScaledInstance((int)(GameBoard.cellSide*sheepMulti), (int)(GameBoard.cellSide*sheepMulti), Image.SCALE_SMOOTH);
-		player = _player.getScaledInstance((int)(GameBoard.cellSide*playerMulti), (int)(GameBoard.cellSide*playerMulti), Image.SCALE_SMOOTH);
-		fire = _fire.getScaledInstance((int)(GameBoard.cellSide*fireMulti), (int)(GameBoard.cellSide*fireMulti), Image.SCALE_SMOOTH);
-		turtle = _turtle.getScaledInstance((int)(GameBoard.cellSide*turtleMulti), (int)(GameBoard.cellSide*turtleMulti), Image.SCALE_SMOOTH);
-		wolf = _wolf.getScaledInstance((int)(GameBoard.cellSide*wolfMulti), (int)(GameBoard.cellSide*wolfMulti), Image.SCALE_SMOOTH);
-		antelope = _antelope.getScaledInstance((int)(GameBoard.cellSide*antelopeMulti), (int)(GameBoard.cellSide*antelopeMulti), Image.SCALE_SMOOTH);
-		cyberSheep = _cyberSheep.getScaledInstance((int)(GameBoard.cellSide*cyberSheepMulti), (int)(GameBoard.cellSide*cyberSheepMulti), Image.SCALE_SMOOTH);
+		milt = _milt.getScaledInstance((int)(board.cellSide*miltMulti), (int)(board.cellSide*miltMulti), Image.SCALE_SMOOTH);
+		guarana = _guarana.getScaledInstance((int)(board.cellSide*guaranaMulti), (int)(board.cellSide*guaranaMulti), Image.SCALE_SMOOTH);
+		wolfBerries = _wolfBerries.getScaledInstance((int)(board.cellSide*wolfBMulti), (int)(board.cellSide*wolfBMulti), Image.SCALE_SMOOTH);
+		borscht = _borscht.getScaledInstance((int)(board.cellSide*borschtMulti), (int)(board.cellSide*borschtMulti), Image.SCALE_SMOOTH);
+		grass = _grass.getScaledInstance((int)(board.cellSide*grassMulti), (int)(board.cellSide*grassMulti), Image.SCALE_SMOOTH);
+		sheep = _sheep.getScaledInstance((int)(board.cellSide*sheepMulti), (int)(board.cellSide*sheepMulti), Image.SCALE_SMOOTH);
+		player = _player.getScaledInstance((int)(board.cellSide*playerMulti), (int)(board.cellSide*playerMulti), Image.SCALE_SMOOTH);
+		fire = _fire.getScaledInstance((int)(board.cellSide*fireMulti), (int)(board.cellSide*fireMulti), Image.SCALE_SMOOTH);
+		turtle = _turtle.getScaledInstance((int)(board.cellSide*turtleMulti), (int)(board.cellSide*turtleMulti), Image.SCALE_SMOOTH);
+		wolf = _wolf.getScaledInstance((int)(board.cellSide*wolfMulti), (int)(board.cellSide*wolfMulti), Image.SCALE_SMOOTH);
+		antelope = _antelope.getScaledInstance((int)(board.cellSide*antelopeMulti), (int)(board.cellSide*antelopeMulti), Image.SCALE_SMOOTH);
+		cyberSheep = _cyberSheep.getScaledInstance((int)(board.cellSide*cyberSheepMulti), (int)(board.cellSide*cyberSheepMulti), Image.SCALE_SMOOTH);
 	}
 }

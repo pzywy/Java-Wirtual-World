@@ -9,7 +9,6 @@ import java.util.List;
 import javax.swing.JPanel;
 
 import Organisms.Organism;
-import util.Point;
 
 
 public class PrintBoard extends JPanel {
@@ -30,14 +29,14 @@ public class PrintBoard extends JPanel {
 	protected void paintComponent(Graphics g)
 	{
 		super.paintComponent(g);
-		GameBoard.cellSide = ( getHeight()*10/GameBoard.rows ) / 11;
+		board.cellSide = ( getHeight()*10/board.rows ) / 11;
 				
 		
 		
 		//g2.setColor(new Color(86, 125, 70));   NICE GREEN
 		g.setColor(new Color(194, 178, 128));
 		
-		g.fillRect(originX, originY,(int)(GameBoard.cellSide*(GameBoard.cols+0.4)), (int)(GameBoard.cellSide*(GameBoard.rows+0.4)));
+		g.fillRect(originX, originY,(int)(board.cellSide*(board.cols+0.4)), (int)(board.cellSide*(board.rows+0.4)));
 		
 		g.setColor(Color.black);
 		//printGrid(g);
@@ -83,10 +82,10 @@ public class PrintBoard extends JPanel {
 		int x = originX;
 		int y = originY;
 		g.fillRoundRect(
-				(int)(x*1.05)+GameBoard.cellSide *(row),
-				(int)(y*1.05)+GameBoard.cellSide *(col),
-				(int)Math.round(GameBoard.cellSide*0.9),
-				(int)Math.round(GameBoard.cellSide*0.9)
+				(int)(x*1.05)+board.cellSide *(row),
+				(int)(y*1.05)+board.cellSide *(col),
+				(int)Math.round(board.cellSide*0.9),
+				(int)Math.round(board.cellSide*0.9)
 				, 30, 30);
 	}
 	
@@ -96,23 +95,23 @@ public class PrintBoard extends JPanel {
 		int y = originY;
 		
 		g.drawImage(img,
-				(int)(x*1.05)+GameBoard.cellSide *(row),
-				(int)(y*1.05)+GameBoard.cellSide *(col)
+				(int)(x*1.05)+board.cellSide *(row),
+				(int)(y*1.05)+board.cellSide *(col)
 				,this);  
 	}
 	
 	private void printGrid(Graphics g)
 	{
-		for(int i=0;i<GameBoard.rows+1;i++)
+		for(int i=0;i<board.rows+1;i++)
 		{
-			g.drawLine(originX, originY+i*GameBoard.cellSide,
-					originX+GameBoard.cols*GameBoard.cellSide, originY+i*GameBoard.cellSide);	
+			g.drawLine(originX, originY+i*board.cellSide,
+					originX+board.cols*board.cellSide, originY+i*board.cellSide);	
 		}
-		for(int i=0;i<GameBoard.cols+1;i++)
+		for(int i=0;i<board.cols+1;i++)
 		{
-			g.drawLine(originX + i * GameBoard.cellSide,
-					originY,originX + i * GameBoard.cellSide,
-					originY + GameBoard.rows * GameBoard.cellSide);	
+			g.drawLine(originX + i * board.cellSide,
+					originY,originX + i * board.cellSide,
+					originY + board.rows * board.cellSide);	
 		}
 	}
 }

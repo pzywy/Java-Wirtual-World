@@ -1,10 +1,7 @@
 package Animals;
 
 import java.awt.Image;
-import java.awt.event.KeyEvent;
 import java.util.concurrent.TimeUnit;
-
-import javax.swing.text.html.HTMLDocument.HTMLReader.SpecialAction;
 
 import Board.GameBoard;
 import Organisms.Animal;
@@ -82,19 +79,19 @@ public class Player extends Animal {
 		
 		
 		if((lastInput=='d'||lastInput=='D')
-				&&getPos().getX()+1<GameBoard.cols&&getPos().getX()+1>=0)
+				&&getPos().getX()+1<board.cols&&getPos().getX()+1>=0)
 			return(new Point(getPos().getX()+1,getPos().getY()));
 		
 		else if((lastInput=='a'||lastInput=='A')
-				&&getPos().getX()-1<GameBoard.cols&&getPos().getX()-1>=0)
+				&&getPos().getX()-1<board.cols&&getPos().getX()-1>=0)
 			return(new Point(getPos().getX()-1,getPos().getY()));
 		
 		else if((lastInput=='w'||lastInput=='W')
-				&&getPos().getY()-1<GameBoard.rows&&getPos().getY()-1>=0)
+				&&getPos().getY()-1<board.rows&&getPos().getY()-1>=0)
 			return(new Point(getPos().getX(),getPos().getY()-1));
 		
 		else if((lastInput=='s'||lastInput=='S')
-				&&getPos().getY()+1<GameBoard.rows&&getPos().getY()+1>=0)
+				&&getPos().getY()+1<board.rows&&getPos().getY()+1>=0)
 			return(new Point(getPos().getX(),getPos().getY()+1));
 		
 		return new Point(-1,-1);
@@ -150,7 +147,7 @@ public class Player extends Animal {
 			cell.setX(cell.getX()+getPos().getX());
 			cell.setY(cell.getY()+getPos().getY());
 			
-			if(cell.getX()<0 || cell.getY()<0 || cell.getY()>=GameBoard.rows || cell.getX()>=GameBoard.cols)
+			if(cell.getX()<0 || cell.getY()<0 || cell.getY()>=board.rows || cell.getX()>=board.cols)
 				continue;
 			
 			Organism org = board.getFromArray(cell);

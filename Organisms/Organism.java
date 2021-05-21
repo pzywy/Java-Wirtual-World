@@ -2,6 +2,7 @@ package Organisms;
 
 import java.awt.Color;
 import java.awt.Image;
+import java.util.Iterator;
 import java.util.Random;
 
 import Board.GameBoard;
@@ -69,7 +70,7 @@ public Point getEmptyNeighbourCell()
 		
 		//System.out.println("checking Pos= "+cell.getX()+" "+cell.getY());
 		
-		if(cell.getX()<0 || cell.getY()<0 || cell.getY()>=GameBoard.rows || cell.getX()>=GameBoard.cols)
+		if(cell.getX()<0 || cell.getY()<0 || cell.getY()>=board.rows || cell.getX()>=board.cols)
 			continue;
 		
 		if(board.getFromArray(cell)==null||!board.getFromArray(cell).isAlive())
@@ -84,7 +85,7 @@ public Point getRandomNeighbour()
 	Point cell = new Point(0,0);
 	int tries=0;
 	while(cell.getX()+getPos().getX()<0 || cell.getY()+getPos().getY()<0 
-			|| cell.getY()+getPos().getY()>=GameBoard.rows || cell.getX()+getPos().getX()>=GameBoard.cols
+			|| cell.getY()+getPos().getY()>=board.rows || cell.getX()+getPos().getX()>=board.cols
 			||(cell.getX()==0&&cell.getY()==0))
 	{
 		tries++;
@@ -114,6 +115,9 @@ public void gotEaten(Organism org)
 
 protected void attemtReproduct()
 {
+	//prevents too much organisms same type on board
+	if(countAliveOrganisms()>board.cols*board.rows/10)return;
+	
 	if(getAge()<getReproduceAge() || reproductionChance<=0)return;
 	Random rand = new Random();
 	if(rand.nextInt((int)(1000/reproductionChance))==0&&isWasEating())
@@ -129,6 +133,21 @@ protected void attemtReproduct()
 }
 protected void reproduct(Point pos) {
 	//System.out.println("Reproduce "+getName()+ " on Pos: "+pos.getX()+" "+pos.getY());
+}
+
+//if any lags occur change this. Create variable for every Organism and add/subtract in GameBoard when added/removed 
+private int countAliveOrganisms()
+{
+	int counter=0;
+	Iterator<Organism> orgIt = board.getListOfOrganisms().iterator();
+	while (orgIt.hasNext()) {
+		Organism org = orgIt.next(); 
+	   if(org.isAlive()&&org.getName()==getName())
+	   {	   
+		   counter++;
+	   }
+	}
+	return counter;
 }
 
 

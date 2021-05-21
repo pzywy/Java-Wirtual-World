@@ -33,8 +33,8 @@ public class Borscht extends Plant {
 	
 	@Override
 	public void turn() {
-		terminateAllAnimalNeighbour();
 		super.turn();
+		terminateAllAnimalNeighbour();
 	}
 	
 	protected void reproduct(Point _pos)
@@ -69,7 +69,7 @@ public class Borscht extends Plant {
 			cell.setX(cell.getX()+getPos().getX());
 			cell.setY(cell.getY()+getPos().getY());
 			
-			if(cell.getX()<0 || cell.getY()<0 || cell.getY()>=GameBoard.rows || cell.getX()>=GameBoard.cols)
+			if(cell.getX()<0 || cell.getY()<0 || cell.getY()>=board.rows || cell.getX()>=board.cols)
 				continue;
 			
 			Organism org = board.getFromArray(cell);

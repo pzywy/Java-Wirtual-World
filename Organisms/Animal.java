@@ -1,7 +1,6 @@
 package Organisms;
 
 
-import java.util.Random;
 
 import Board.GameBoard;
 import util.Point;

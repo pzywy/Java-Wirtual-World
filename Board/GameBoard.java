@@ -19,10 +19,11 @@ import util.Point;
 
 public class GameBoard {
 
-	public static final int cols=30;
-	public static final int rows=30;
-	public static int cellSide=25;
-	public static int turnCount=0;
+	public final int cols=30;
+	public final int rows=30;
+	public int cellSide=25;
+	public int turnCount=0;
+	
 	
 	private List<Organism> organismsList = new ArrayList<Organism>();
 	private Organism[] organismArray = new Organism[cols*rows];
@@ -53,7 +54,9 @@ public class GameBoard {
 		turnCount=0;
 	}
 	
-	private void restartBoard()
+	
+	//cleanes board if for some reason there are dead organisms.
+	private void cleanUpBoard()
 	{
 		for(int i=0;i<cols*rows;i++)
 		{
@@ -143,12 +146,15 @@ public class GameBoard {
 			if(i>=organismsList.size())break;
 			Organism org = organismsList.get(i);
 			
+			if(org.getName()==ORG.GRACZ)repaint();
+			
 			if(org.isAlive())
 				org.turn();
 			else
 				org.del();
 			
-			if(turnCount%100==0)restartBoard();
+			//every 50 turns cleanup
+			if(turnCount%50==1)cleanUpBoard();
 		}
 		
 		Iterator<Organism> orgIt = organismsList.iterator();
@@ -214,10 +220,19 @@ public class GameBoard {
 		JFrame parentFrame = new JFrame();
 		 
 		JFileChooser fileChooser = new JFileChooser();
+		
+		File destination = new File (System.getProperty("user.home")+ System.getProperty("file.separator")
+		+ "Documents"+ System.getProperty("file.separator")+"WirtualWorld");	
+		if (! destination.exists()){
+			destination.mkdir();    
+	    }
+		fileChooser.setCurrentDirectory(destination);
+
 		fileChooser.setDialogTitle("Save game state");   
 		 
 		int userSelection = fileChooser.showSaveDialog(parentFrame);
 		 
+		
 		if (userSelection == JFileChooser.APPROVE_OPTION) {
 		    File fileToSave = fileChooser.getSelectedFile();
 		    try {
@@ -238,6 +253,14 @@ public class GameBoard {
 		JFrame parentFrame = new JFrame();
 		 
 		JFileChooser fileChooser = new JFileChooser();
+		
+		File destination = new File (System.getProperty("user.home")+ System.getProperty("file.separator")
+		+ "Documents"+ System.getProperty("file.separator")+"WirtualWorld");	
+		if (! destination.exists()){
+			destination.mkdir();    
+	    }
+		fileChooser.setCurrentDirectory(destination);
+		
 		fileChooser.setDialogTitle("Choose save file load");   
 		 
 		int userSelection = fileChooser.showOpenDialog(parentFrame);
