@@ -113,8 +113,11 @@ public class GameControll{
 		 _frame.frame.requestFocus();
 		board.turn(panel);
         panel.repaint();
+        if(board.player!=null)
         label.setText("Turn nr: "+board.turnCount+"\n Player lived/max : "
         +board.player.getAge()+"/"+board.player.getMaxAge()+" strengh: "+board.player.getStrengh());
+        else 
+        	label.setText("Turn nr: "+board.turnCount+"\n Player is dead");
 	}
 	
 	

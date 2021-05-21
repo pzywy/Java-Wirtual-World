@@ -58,7 +58,7 @@ public class Player extends Animal {
 	private Point getDestination()
 	{
 		GameBoard.lastInput='/';
-		int attempts=1000;
+		int attempts=10000;
 		
 		while(GameBoard.lastInput=='/'&&attempts>=0)
 		{
