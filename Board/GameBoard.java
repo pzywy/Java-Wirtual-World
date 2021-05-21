@@ -1,8 +1,13 @@
 package Board;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -187,6 +192,77 @@ public class GameBoard {
 
 	public void setFrame(JFrame frame) {
 		this.frame = frame;
+	}
+	
+	
+	public void saveToFile()
+	{
+		
+		String saveFileTxt="";
+		
+		Iterator<Organism> orgIt = organismsList.iterator();
+		while (orgIt.hasNext()) {
+			Organism org = orgIt.next(); // must be called before you can call i.remove()
+		   if(org.isAlive())
+		   {	   
+			  saveFileTxt += org.getName().toString()+" "+org.getAge()+" "+org.getMaxAge()
+			  +" "+org.getPos().getX()
+			  +" "+org.getPos().getY()+" "+org.getStrengh()+" " + org.isWasEating() + "\n";
+		   }
+		}
+	
+		JFrame parentFrame = new JFrame();
+		 
+		JFileChooser fileChooser = new JFileChooser();
+		fileChooser.setDialogTitle("Save game state");   
+		 
+		int userSelection = fileChooser.showSaveDialog(parentFrame);
+		 
+		if (userSelection == JFileChooser.APPROVE_OPTION) {
+		    File fileToSave = fileChooser.getSelectedFile();
+		    try {
+		    	FileWriter fw = new FileWriter(fileToSave.getAbsolutePath());
+		    	fw.write(saveFileTxt);
+		    	fw.close();
+			} catch (Exception e) {
+				System.out.println(e.getMessage());
+			}
+		    System.out.println("Save as file: " + fileToSave.getAbsolutePath());
+		}
+		
+	}
+	
+	public String loadFromFile()
+	{
+		String result="";
+		JFrame parentFrame = new JFrame();
+		 
+		JFileChooser fileChooser = new JFileChooser();
+		fileChooser.setDialogTitle("Choose save file load");   
+		 
+		int userSelection = fileChooser.showOpenDialog(parentFrame);
+		 
+		if (userSelection == JFileChooser.APPROVE_OPTION) {
+		    File fileToLoad = fileChooser.getSelectedFile();
+		    try {
+		    	BufferedReader b = new BufferedReader(new FileReader(fileToLoad));
+		    	String load;	
+		    	while((load=b.readLine())!=null)
+		    	{
+		    		result+=load+"\n";
+		    		//System.out.println(load);
+		    	}
+		    	if(b!=null)
+		    	{
+		    		b.close();
+		    	}
+			} catch (Exception e) {
+				System.out.println(e.getMessage());
+			}
+		    System.out.println("Load  file: " + fileToLoad.getAbsolutePath());
+		    
+		}
+		return result;
 	}
 	
 }

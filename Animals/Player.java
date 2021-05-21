@@ -29,7 +29,7 @@ public class Player extends Animal {
 		super.turn();
 		if(specialActionActive)specialAction();
 		else if(specialActionCooldown>0)specialActionCooldown--;
-		System.out.println("Player: "+getPos().getX()+", "+getPos().getY());
+		//System.out.println("Player: "+getPos().getX()+", "+getPos().getY());
 		//System.out.println("on this pos: "+board.getFromArray(getPos()));
 	}
 	

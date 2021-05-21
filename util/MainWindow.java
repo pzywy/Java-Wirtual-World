@@ -7,11 +7,11 @@ import javax.swing.JFrame;
 
 
 @SuppressWarnings("serial")
-public class Keyboard extends JFrame implements KeyListener {
+public class MainWindow extends JFrame implements KeyListener {
  
 // 	private char lastInput='/';
  
- 	public Keyboard() {
+ 	public MainWindow() {
  		addKeyListener(this);
  		setFocusable(true);
 	    setFocusTraversalKeysEnabled(false);
