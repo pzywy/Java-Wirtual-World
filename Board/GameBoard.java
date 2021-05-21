@@ -150,8 +150,9 @@ public class GameBoard {
 			
 			if(org.isAlive())
 				org.turn();
-			else
-				org.del();
+//			this throws exception
+//			else
+//				org.del();
 			
 			//every 50 turns cleanup
 			if(turnCount%50==1)cleanUpBoard();
@@ -205,7 +206,7 @@ public class GameBoard {
 	{
 		
 		String saveFileTxt="";
-		
+		saveFileTxt+=turnCount+"\n";
 		Iterator<Organism> orgIt = organismsList.iterator();
 		while (orgIt.hasNext()) {
 			Organism org = orgIt.next(); // must be called before you can call i.remove()

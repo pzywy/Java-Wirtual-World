@@ -18,6 +18,7 @@ import javax.swing.JPanel;
 
 import Animals.Antelope;
 import Animals.CyberSheep;
+import Animals.Fox;
 import Animals.Player;
 import Animals.Sheep;
 import Animals.Turtle;
@@ -71,6 +72,7 @@ public class GameControll{
 				{	
 					if(rand.nextInt(100)==0)new Grass(new Point(x,y),board);
 					else if(rand.nextInt(100)==0)new Milt(new Point(x,y),board);
+					else if(rand.nextInt(100)==0)new Fox(new Point(x,y),board);
 					else if(rand.nextInt(100)==0)new Sheep(new Point(x,y),board);
 					else if(rand.nextInt(100)==0)new Antelope(new Point(x,y),board);
 					else if(rand.nextInt(100)==0)new Wolf(new Point(x,y),board);
@@ -256,7 +258,8 @@ public class GameControll{
 		
 		String[] lines = input.split("\n");
 		System.out.println(lines.length);
-		for(int i=0;i<lines.length;i++)
+		board.turnCount=Integer.parseInt(lines[0]);
+		for(int i=1;i<lines.length;i++)
 		{
 			System.out.println("index: "+i+" "+lines[i]);
 			Organism org;
@@ -271,7 +274,7 @@ public class GameControll{
 				else if(vars[0].equals(ORG.FIRE.toString()))org = new Fire(pos, board);
 				else if(vars[0].equals(ORG.GRACZ.toString()))org = new Player(pos, board);
 				else if(vars[0].equals(ORG.GUARANA.toString()))org = new Guarana(pos, board);
-				//else if(vars[0].equals(ORG.LIS.toString()))org = new Fox(pos, board);
+				else if(vars[0].equals(ORG.LIS.toString()))org = new Fox(pos, board);
 				else if(vars[0].equals(ORG.MLECZ.toString()))org = new Milt(pos, board);
 				else if(vars[0].equals(ORG.OWCA.toString()))org = new Sheep(pos, board);
 				else if(vars[0].equals(ORG.TRAWA.toString()))org = new Grass(pos, board);

@@ -4,6 +4,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.swing.JPanel;
@@ -64,7 +65,7 @@ public class PrintBoard extends JPanel {
 //		for (Iterator<Organism> _org = board.getListOfOrganisms().iterator(); _org.hasNext();) {
 //			Organism org = _org.next();
 //			if(org!=null&&org.isAlive())
-//				drawImg(g2,org.getPos().getX(),org.getPos().getY(),org.getImg());
+//				drawImg(g,org.getPos().getX(),org.getPos().getY(),org.getImg());
 //			//else if(org!=null&&org.isAlive()) org.del();
 //		}
 		
@@ -100,6 +101,7 @@ public class PrintBoard extends JPanel {
 				,this);  
 	}
 	
+	@SuppressWarnings("unused")
 	private void printGrid(Graphics g)
 	{
 		for(int i=0;i<board.rows+1;i++)

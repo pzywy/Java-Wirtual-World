@@ -16,9 +16,10 @@ public class Images {
 	private static float fireMulti = 1.05f;
 	private static float playerMulti = 1.3f;
 	private static float wolfMulti = 1.05f;
-	private static float turtleMulti = 1.05f;
+	private static float turtleMulti = 1.25f;
 	private static float antelopeMulti = 1.05f;
-	private static float cyberSheepMulti = 1.05f;
+	private static float cyberSheepMulti = 1.15f;
+	private static float foxSheepMulti = 0.95f;
 	
 	private static Image _milt = Toolkit.getDefaultToolkit().getImage("src/data/milt.png");
 	private static Image _guarana = Toolkit.getDefaultToolkit().getImage("src/data/guarana.png");
@@ -32,6 +33,7 @@ public class Images {
 	private static Image _turtle = Toolkit.getDefaultToolkit().getImage("src/data/turtle.png");
 	private static Image _antelope = Toolkit.getDefaultToolkit().getImage("src/data/antelope.png");
 	private static Image _cyberSheep = Toolkit.getDefaultToolkit().getImage("src/data/cybersheep.png");
+	private static Image _fox = Toolkit.getDefaultToolkit().getImage("src/data/fox.png");
 	
 	public static Image milt = _milt;
 	public static Image guarana = _guarana;
@@ -45,6 +47,8 @@ public class Images {
 	public static Image turtle = _turtle;
 	public static Image antelope = _antelope;
 	public static Image cyberSheep = _cyberSheep;
+	public static Image fox = _fox;
+	
 	public static void reload(GameBoard board)
 	{
 		milt = _milt.getScaledInstance((int)(board.cellSide*miltMulti), (int)(board.cellSide*miltMulti), Image.SCALE_SMOOTH);
@@ -59,5 +63,6 @@ public class Images {
 		wolf = _wolf.getScaledInstance((int)(board.cellSide*wolfMulti), (int)(board.cellSide*wolfMulti), Image.SCALE_SMOOTH);
 		antelope = _antelope.getScaledInstance((int)(board.cellSide*antelopeMulti), (int)(board.cellSide*antelopeMulti), Image.SCALE_SMOOTH);
 		cyberSheep = _cyberSheep.getScaledInstance((int)(board.cellSide*cyberSheepMulti), (int)(board.cellSide*cyberSheepMulti), Image.SCALE_SMOOTH);
+		fox = _fox.getScaledInstance((int)(board.cellSide*foxSheepMulti), (int)(board.cellSide*foxSheepMulti), Image.SCALE_SMOOTH);
 	}
 }

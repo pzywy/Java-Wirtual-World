@@ -55,15 +55,15 @@ public abstract class Animal extends Organism {
 			
 		}
 		
-		//think about delete die function here, its already in move()
+		
 		else if(org.getStrengh()<getStrengh())
 		{
-			org.died("killed by "+getName()+" with strengh: "+getStrengh());
+			//org.died("killed by "+getName()+" with strengh: "+getStrengh());
 			return -1;
 		}
 		else
 		{
-			died("killed by" +org.getName() +" with strengh: "+org.getStrengh());
+			died("killed by " +org.getName() +" with strengh: "+org.getStrengh());
 			gotEaten(org);
 			return 1;
 		}	
@@ -89,7 +89,7 @@ public abstract class Animal extends Organism {
 			switch(org.didPassCollision(this))
 			{
 			case  0:  {break;}
-			case -1:  {died("fighting "+org.getName());break;}
+			case -1:  {died("fighting "+org.getName()+" with strengh "+org.getStrengh());break;}
 			case  1:  {board.addToArray(null, getPos()); setPos(dest); board.addToArray(this, dest); break;}
 			}
 		}

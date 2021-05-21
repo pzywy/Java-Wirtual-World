@@ -115,8 +115,8 @@ public void gotEaten(Organism org)
 
 protected void attemtReproduct()
 {
-	//prevents too much organisms same type on board
-	if(countAliveOrganisms()>board.cols*board.rows/10)return;
+	//prevents too much organisms same type on board. current max: 20% of board capacity
+	if(countAliveOrganisms()>board.cols*board.rows/5)return;
 	
 	if(getAge()<getReproduceAge() || reproductionChance<=0)return;
 	Random rand = new Random();
